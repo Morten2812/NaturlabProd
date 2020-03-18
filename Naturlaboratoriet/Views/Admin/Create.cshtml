@@ -1,0 +1,138 @@
+﻿@model Naturlaboratoriet.Models.ViewModels.ProductViewModels
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+
+
+
+
+<div class="col-md-10 mx-auto py-4">
+    <div class="card">
+        <div class="card-header bg-success text-uppercase text-white">
+            <h4>Create New - product</h4>
+        </div>
+        <div class="card-body">
+            <form enctype="multipart/form-data" asp-action="Create">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="Name" class="control-label"></label>
+                            <input asp-for="Name" class="form-control" />
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="PrimaryImage" class="control-label"></label>
+                            <div class="custom-file">
+                                <input asp-for="PrimaryImage" class="custom-file-input" id="customFile">
+                                <label class="custom-file-label" for="customFile">Choose file</label>
+                            </div>
+                            <span asp-validation-for="PrimaryImage" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="Price" class="control-label"></label>
+                            <input asp-for="Price" class="form-control" />
+                            <span asp-validation-for="Price" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="SecondaryImage1" class="control-label"></label>
+                            <div class="custom-file">
+                                <input asp-for="SecondaryImage1" class="custom-file-input" id="customFile1">
+                                <label class="custom-file-label" for="customFile">Choose file</label>
+                            </div>
+                            <span asp-validation-for="SecondaryImage1" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="Description" class="control-label"></label>
+                            <input asp-for="Description" class="form-control" />
+                            <span asp-validation-for="Description" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="SecondaryImage2" class="control-label"></label>
+                            <div class="custom-file">
+                                <input asp-for="SecondaryImage2" class="custom-file-input" id="customFile2">
+                                <label class="custom-file-label" for="customFile">Choose file</label>
+                            </div>
+                            <span asp-validation-for="SecondaryImage2" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="Category" class="control-label"></label>
+                            <select asp-for="CategoryID" class="form-control" asp-items="ViewBag.CategoryID">
+                                <option value="">--Choose Category--</option>
+                            </select>
+                            <span asp-validation-for="Category" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="SecondaryImage3" class="control-label"></label>
+                            <div class="custom-file">
+                                <input asp-for="SecondaryImage3" class="custom-file-input" id="customFile3">
+                                <label class="custom-file-label" for="customFile">Choose file</label>
+                            </div>
+                            <span asp-validation-for="SecondaryImage3" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <input asp-for="Instock"/>
+                <label asp-for="Instock"></label>
+
+
+
+                <div class="form-group">
+                    <input type="submit" value="submit" class="btn btn-sm btn-outline-success rounded-0 text-uppercase" />
+                    <a asp-action="Index" class="btn btn-sm btn-outline-success rounded-0 text-uppercase"><i class="fas fa-fast-backward"></i> Back to List</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+@section scripts{
+    <script type="text/javascript">
+
+        // Add the following code if you want the name of the file appear on select
+        $(".custom-file-input").on("change", function () {
+            var fileName = $(this).val().split("\\").pop();
+            $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+        });
+    </script>
+}
+
+
+
+
+
+
+
+
+
+@*@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}*@

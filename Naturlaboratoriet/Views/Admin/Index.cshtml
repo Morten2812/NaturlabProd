@@ -1,0 +1,90 @@
+﻿@model IEnumerable<Naturlaboratoriet.Models.Product>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<p style="font-weight: bold;">
+    <font color="grey"> Hej @User.Identity.Name!, Du er logget ind med følgende rolle: @User.FindFirst(claim => claim.Type == System.Security.Claims.ClaimTypes.Role)?.Value </font><a asp-action="Logout" asp-controller="account">
+        Logout
+    </a>
+</p>
+
+
+<p>
+    <a asp-action="Create" class="btn btn-sm btn-success rounded-0 text-uppercase">Create New</a>
+</p>
+<table class="table table-striped">
+    <thead class="thead-dark">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CategoryID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PrimaryImage)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SecondaryImage1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SecondaryImage2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SecondaryImage3)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Instock)
+            </th>
+            <th>
+                Adjust
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category.CategoryDescription)
+            </td>
+            <td>
+                <img src="~/images/@item.PrimaryImage"  height="100" width="100" asp-append-version="true" />
+            </td>
+            <td>
+                <img src="~/images/@item.SecondaryImage1" height="100" width="100" asp-append-version="true" />
+            </td>
+            <td>
+                <img src="~/images/@item.SecondaryImage2" height="100" width="100" asp-append-version="true" />
+            </td>
+            <td>
+                <img src="~/images/@item.SecondaryImage3" height="100" width="100" asp-append-version="true" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Instock)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ProductID">Edit</a> |
+                @*<a asp-action="Details" asp-route-id="@item.ProductID">Details</a> |*@
+                <a asp-action="Delete" asp-route-id="@item.ProductID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
